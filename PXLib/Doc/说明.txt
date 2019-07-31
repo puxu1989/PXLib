@@ -1,0 +1,20 @@
+﻿1.NET支持的类型参数约束有以下五种：
+where T : struct                               | T必须是一个结构类型
+where T : class                                | T必须是一个Class类型
+where T : new()                               | T必须要有一个无参构造函数
+where T : NameOfBaseClass          | T必须继承名为NameOfBaseClass的类
+where T : NameOfInterface             | T必须实现名为NameOfInterface的接口
+
+2.IEnumerable<TObj>很多基本的List都继承它
+
+3. //软件注册 在使用限制的方法或者构造里加SoftRegHelper Verify = new SoftRegHelper();
+
+4.构造函数后面this表示多个重载调用 sealed：不可被继承类 internal修饰符仅对当前程序集(dll 或 exe)内有效
+
+5.注意只读属性{ get; private set; }的用法 省略私有字段
+
+6.泛型类的使用 继承原理 研究PopMessage的MessagePartExtracter
+
+7.IOCP服务器：支持的webscoket在安卓环境最大发送33304，在普通浏览器最大发送128k（可能是websocket解包方法的问题）,但IOCP设置的的接收缓冲区最大是多少就是多少
+
+8.  /*JToken 不能实例化，若要生成新的Json，使用Jobject*/

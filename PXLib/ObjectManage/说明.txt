@@ -1,0 +1,49 @@
+﻿对象管理分类说名
+  此命名空间下的大多数类是对.net的补充以及方便调用
+   .NET内置集合
+Dictionary<TKey,TValue>
+   Dictionary<TKey,TValue>可能是我们最常用的关联性集合了，它的访问，添加，删除数据所花费的时间是所有集合类里面最快的，因为它内部用了Hashtable作为存储结构，所以不管存储了多少键值对，查询/ 添加/删除所花费的时间都是一样的,它的时间复杂度是O(1)。
+
+Dictionary<TKey,TValue>优势是查找插入速度快，那么什么是它的劣势呢？因为采用Hashtable作为存储结构，就意味着里面的数据是无序排列的，所以想按一定的顺序去遍历Dictionary<TKey,TValue>里面的  数据是要费一点工夫的。作为TKey的类型必须实现GetHashCode()和Equals() 或者提供一个IEqualityComparer，否则操作可能会出现问题。
+
+SortedDictioanry<TKey,TValue>
+    SortedDictionary<TKey,TValue>和Dictionary<TKey,TValue>大致上是类似的，但是在实现方式上有一点点区别。SortedDictionary<TKey,TValue>用二叉树作为存储结构的。并且按key的顺序排列。
+   这样的话SortedDictionary<TKey,TValue>的TKey就必须要实现IComparable<TKey>。如果想要快速查询的同时又能很好的支持排序的话，那就使用SortedDictionary吧。
+
+SortedList<TKey,TValue>       
+  SortedList<TKey,TValue>是另一个支持排序的关联性集合。但是不同的地方在于，SortedList实际是将数据存存储在数组中的。也就是说添加和移除操作都是线性的，时间复杂度是O(n)，因为操作其中的元素可能导致所有的数据移动。但是因为在查找的时候利用了二分搜索，所以查找的性能会好一些，时间复杂度是O(log n)。所以推荐使用场景是这样地：如果你想要快速查找，又想集合按照key的顺序排列，最后这个集合的操作（添加和移除）比较少的话，就是SortedList了。
+
+List<T>
+　　泛型的List 类提供了不限制长度的集合类型，List在内部维护了一定长度的数组(默认初始长度是4)，当我们插入元素的长度超过4或者初始长度 的时候，会去重新创建一个新的数组,这个新数组的长度是初始长度的2倍（不永远是2倍，当发现不断的要扩充的时候，倍数会变大），然后把原来的数组拷贝过来。所以如果知道我们将要用这个集合装多少个元素的话，可以在创建的时候指定初始值，这样就避免了重复的创建新数组和拷贝值。
+　　另外的话由于内部实质是一个数组，所以在List的未必添加数据是比较快的，但是如果在数据的头或者中间添加删除数据相对来说更低效一些因为会影响其它数据的重新排列。
+
+LinkedList<T>
+　　LinkedList在内部维护了一个双向的链表，也就是说我们在LinkedList的任何位置添加或者删除数据其性能都是很快的。因为它不会导致其它元素的移动。一般情况下List已经够我们使用了，但是如果对这个集合在中间的添加删除操作非常频繁的话，就建议使用LinkedList。
+
+HashSet<T>
+　　HashSet是一个无序的能够保持唯一性的集合。我们也可以把HashSet看作是Dictionary<TKey,TValue>，只不过TKey和TValue都指向同一个对象。HashSet非常适合在我们需要保持集合内元素唯一性但又不需要按顺序排列的时候。
+　　HashSet不支持下标访问。
+
+SortedSet<T>
+　　SortedSet和HashSet,就像SortedDictionary和Dictionary一样，还记得这两个的区别么？SortedSet内部也是一个二叉树，用来支持按顺序的排列元素。
+
+Stack<T>
+　　后进先出的队列
+　　不支持按下标访问
+
+Queu<T>
+　　先进先出的队列
+　　不支持按下标访问
+
+非泛型类集合
+ArraryList后来被List<T>替代。
+HashTable 后来被Dictionary<TKey,TValue>替代。
+Queue 后来被Queue<T>替代。
+SortedList 后来被SortedList<T>替代。
+Stack 后来被Stack<T>替代。
+线程安全的集合类
+ConcurrentQueue 线程安全版本的Queue
+ConcurrentStack线程安全版本的Stack
+ConcurrentBag线程安全的对象集合
+ConcurrentDictionary线程安全的Dictionary
+BlockingCollection

@@ -1,0 +1,18 @@
+﻿反射篇
+http://www.cnblogs.com/Mervin/archive/2013/03/20/reflection-1.html
+
+Assembly类详细说明
+http://blog.csdn.net/lyncai/article/details/8621880
+
+反射的实现离不开两个重要的类：System.Type 和 System.Reflection 命名空间下的Assembly类。
+ Type 类是许多反射功能的入口，它实现许多方法和属性，使用Type来确定数据的类型以及获取对应数据类型的成员信息。如：构造函数，方法，属性，事件等等。结合assembly类的GetTypes方法，返回程序集里所有类型的Type数组，也可以使用assembly的GetType方法来获取指定名称的Type对象，得到Type对象后可以进行实例化，进而通过实例化的对象来实现数据成员的调用。   
+
+ http://www.cnblogs.com/Mervin/archive/2013/04/05/reflection-3.html
+ 若要动态创建类型，请使用 System.Reflection.Emit 命名空间
+ 首先来看下使用Emit的一般步骤： 
+    1. 创建一个程序集。 
+    2. 在程序集内创建一个模块。 
+    3. 在模块内创建动态类。 
+    4. 为动态类添加动态方法，属性，事件，等等。 
+    5. 生成相关的IL代码。
+    6. 返回创建的类型或是持久化保存到硬盘中。

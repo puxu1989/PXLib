@@ -1,0 +1,6 @@
+﻿1.创建服务端代理类并继承Hub
+2.路由注册
+
+3.从外部线程访问PersistentConnection 或者 Hub
+ var context = GlobalHost.ConnectionManager.GetHubContext<自定义的Hub名称>();
+ var context = GlobalHost.ConnectionManager.GetHubContext<自定义的PersistentConnection名称>();
