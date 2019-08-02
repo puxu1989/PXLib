@@ -29,6 +29,7 @@ namespace PXLib.DataAccess.Database
         int Delete<T>(object KeyValue) where T : class;
         int Delete<T>(object[] KeyValue) where T : class;
         bool Delete<T>(string propertyName, object propertyValue) where T : class;
+        bool Delete(string tableName, string propertyName, object propertyValue);
         int Update<T>(T entity) where T : class;
         int Update<T>(T entity,string pkName) where T : class;
         int Update<T>(IEnumerable<T> entities) where T : class;

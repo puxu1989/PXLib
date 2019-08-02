@@ -13,6 +13,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Script.Serialization;
+using System.Linq;
 
 namespace PXLib.Helpers
 {
@@ -152,6 +153,49 @@ namespace PXLib.Helpers
             return dtNow.ToString("yyyyMMdd") + qishu.ToString().PadLeft(pad, '0');
         }
 
+        #endregion
+        #region 邀请码<=>用户Id
+        private static readonly string source_string = "2YU9IP6ASDFG8QWERTHJ7KLZX4CV5B3ONM1";//自定义35进制 此算法不能改
+        /// <summary>
+        /// 创建邀请码 Id必须为Int
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public static string CreateInviteCode(int Id)
+        {
+            string code = "";
+            int mod;
+            while (Id > 0)
+            {
+                mod = Id % source_string.Length;
+                Id = (Id - mod) / source_string.Length;
+                code = source_string.ToCharArray()[mod] + code;
+
+            }
+            return code.PadRight(6, '0').ToLower();//不足六位补0
+        }
+        /// <summary>
+        /// 解码邀请码返回用户Id
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public static int DecodeInviteCode(string code)
+        {
+            code = code.ToUpper();
+            code = new string((from s in code where s != '0' select s).ToArray());
+            int num = 0;
+            for (int i = 0; i < code.ToCharArray().Length; i++)
+            {
+                for (int j = 0; j < source_string.ToCharArray().Length; j++)
+                {
+                    if (code.ToCharArray()[i] == source_string.ToCharArray()[j])
+                    {
+                        num += j * Convert.ToInt32(Math.Pow(source_string.Length, code.ToCharArray().Length - i - 1));
+                    }
+                }
+            }
+            return num;
+        }
         #endregion
         public static string GetMethodInfo()
         {

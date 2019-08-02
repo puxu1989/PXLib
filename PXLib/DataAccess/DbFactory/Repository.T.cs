@@ -41,6 +41,7 @@ namespace PXLib.DataAccess.DbFactory
         int Delete(object[] keyValue);
 
         bool Delete(string propertyName, object propertyValue);
+        bool Delete(string tableName, string propertyName, object propertyValue);
         #endregion
         #region 更新4个
         int Update(T entity);
@@ -182,6 +183,10 @@ namespace PXLib.DataAccess.DbFactory
         public bool Delete(string propertyName, object propertyValue)
         {
             return this.db.Delete<T>(propertyName, propertyValue);
+        }
+        public bool Delete(string tableName, string propertyName, object propertyValue)
+        {
+            return this.db.Delete(tableName, propertyName, propertyValue);
         }
 
         public int Update(T entity)

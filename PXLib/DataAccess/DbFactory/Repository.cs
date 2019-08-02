@@ -39,7 +39,7 @@ namespace PXLib.DataAccess.DbFactory
         int Delete<T>(object[] keyValue) where T : class;
 
         bool Delete<T>(string propertyName, object propertyValue) where T : class;
-
+        bool Delete(string tableName, string propertyName, object propertyValue);
         int Update<T>(T entity) where T : class;
         int Update<T>(T entity, string pkName) where T : class;
         int Update<T>(List<T> entities) where T : class;
@@ -151,6 +151,10 @@ namespace PXLib.DataAccess.DbFactory
         public bool Delete<T>(string propertyName,object propertyValue) where T : class
         {
             return this.db.Delete<T>(propertyName,propertyValue);
+        }
+        public bool Delete(string tableName, string propertyName, object propertyValue)
+        {
+            return this.db.Delete(tableName,propertyName, propertyValue);
         }
         public int Update<T>(T entity) where T : class
         {

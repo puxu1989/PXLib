@@ -275,6 +275,33 @@ namespace PXLib.DataAccess.Database
             StringBuilder sb = new StringBuilder($"Delete From {typeof(T).GetMappingAttributeName()} Where {propertyName} = ?{propertyValue}");
             return ExecuteNonQuery(sb.ToString(), new MySqlParameter(propertyName, propertyValue)) > 0 ? true : false;
         }
+        public bool Delete(string tableName, string propertyName, object propertyValue)
+        {
+            bool flag = string.IsNullOrEmpty(propertyValue.ToString());
+            bool result;
+            if (flag)
+            {
+                result = false;
+            }
+            else
+            {
+                StringBuilder stringBuilder = new StringBuilder(string.Concat(new string[]
+                {
+                    "Delete From ",
+                    tableName,
+                    " Where ",
+                    propertyName,
+                    " = ?",
+                    propertyName
+                }) ?? "");
+                result = (this.ExecuteNonQuery(stringBuilder.ToString(), new DbParameter[]
+                {
+                    new MySqlParameter(propertyName, propertyValue)
+                }) > 0);
+            }
+            return result;
+        }
+
         #endregion
         #region 更新 4 个
         public int Update<T>(T entity) where T : class
