@@ -17,6 +17,16 @@ namespace PXLib.ObjectManage.Caches
         private int capacity = 10;
         private bool isFull = false;
         private DateTime lastObjectAddedTime = DateTime.Now;
+        public LatestObjectCache(int _capacity)
+        {
+            this.capacity = _capacity;
+            if (this.capacity <= 0)
+            {
+                throw new Exception("Capacity must be greater than 0.");
+            }
+            this.array = new T[this.capacity];
+            this.latestObjectIndex = -1;
+        }
         /// <summary>
         /// 获取最多容纳多少个最新对象。
         /// </summary>
@@ -53,7 +63,7 @@ namespace PXLib.ObjectManage.Caches
         /// <summary>
         /// 缓存中对象的个数。
         /// </summary>
-        private int ValidObjectCount
+        public int Count
         {
             get
             {
@@ -73,20 +83,7 @@ namespace PXLib.ObjectManage.Caches
                 return result;
             }
         }
-        public LatestObjectCache(int _capacity)
-        {
-            this.capacity = _capacity;
-        }
-        public void Initialize(int _capacity)
-        {
-            if (this.capacity <= 0)
-            {
-                throw new Exception("Capacity must be greater than 0.");
-            }
-            this.array = new T[this.capacity];
-            this.latestObjectIndex = -1;
-        }
-
+       
         /// <summary>
         /// 向缓存中添加最新的对象。
         /// </summary>        

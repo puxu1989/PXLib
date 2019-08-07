@@ -402,7 +402,20 @@ namespace PXLib
                 return result;
             return null;
         }
-
+        /// <summary>
+        /// 转换到Int64
+        /// </summary>
+        /// <param name="data">数据</param>
+        public static long? ToLongOrNull(this object data)
+        {
+            if (data == null)
+                return null;
+            long result;
+            bool isValid = long.TryParse(data.ToString(), out result);
+            if (isValid)
+                return result;
+            return null;
+        }
         /// <summary>
         /// 转换为高精度浮点数
         /// </summary>
