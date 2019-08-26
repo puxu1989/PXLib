@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -77,6 +78,16 @@ namespace PXLib.Helpers
                 result[i] = source[startIndex + i];
             }
 
+            return result;
+        }
+        public static byte[] GetAllBytes(Stream stream)
+        {
+            byte[] result;
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                stream.CopyTo(memoryStream);
+                result = memoryStream.ToArray();
+            }
             return result;
         }
     }

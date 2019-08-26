@@ -298,7 +298,7 @@ var isWap = function () {
         return true;
     }
     return false;
-}
+};
 var isInArray = function (arr, value) {
     //是否在数组中。
     for (var i = 0, l = arr.length; i < l; i++) {
@@ -307,7 +307,7 @@ var isInArray = function (arr, value) {
         }
     }
     return false;
-}
+};
 var roundString = function (len) {
     //获取随机字符串
     var result = "";
@@ -318,12 +318,12 @@ var roundString = function (len) {
         result += charArr.charAt(index);
     }
     return result;
-}
+};
 var roundFromTo = function (from, to) {
     //生成from到to的随机数；整数，包含to不包含from
     var react = to - from;
     return Math.ceil(Math.random() * react + from);
-}
+};
 
 /*------------------------------------------------UI操作封装-------------------------------------------------*/
 $.fn.GetWebControls = function (keyValue) {
