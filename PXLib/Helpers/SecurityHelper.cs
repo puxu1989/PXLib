@@ -22,9 +22,9 @@ namespace PXLib.Helpers
         /// </summary>
         /// <param name="Text"></param>
         /// <returns></returns>
-        public static string DESEncryptString(string Text)
+        public static string DESEncrypt(string Text)
         {
-            return DESEncryptString(Text, defDESEncryptKey);
+            return DESEncrypt(Text, defDESEncryptKey);
         }
         /// <summary> 
         /// DES数据加密 
@@ -32,7 +32,7 @@ namespace PXLib.Helpers
         /// <param name="Text"></param> 
         /// <param name="sKey"></param> 
         /// <returns></returns> 
-        public static string DESEncryptString(string Text, string sKey)
+        public static string DESEncrypt(string Text, string sKey)
         {
             DESCryptoServiceProvider des = new DESCryptoServiceProvider();
             //DES算法具有极高安全性，到目前为止，除了用穷举搜索法对DES算法进行攻击外，还没有发现更有效的办法。而56位长的密钥的穷举空间为256，这意味着如果一台计算机的速度是每一秒钟检测一百万个密钥，则它搜索完全部密钥就需要将近2285年的时间，可见，这是难以实现的。然而，这并不等于说DES是不可破解的。而实际上，随着硬件技术和Intemet的发展，其破解的可能性越来越大，而且，所需要的时间越来越少。
@@ -58,9 +58,9 @@ namespace PXLib.Helpers
         /// </summary>
         /// <param name="Text"></param>
         /// <returns></returns>
-        public static string DESDecryptString(string Text)
+        public static string DESDecrypt(string Text)
         {
-            return DESDecryptString(Text, defDESEncryptKey);
+            return DESDecrypt(Text, defDESEncryptKey);
         }
         /// <summary> 
         /// DES解密数据 
@@ -68,7 +68,7 @@ namespace PXLib.Helpers
         /// <param name="Text"></param> 
         /// <param name="sKey"></param> 
         /// <returns></returns> 
-        public static string DESDecryptString(string Text, string sKey)
+        public static string DESDecrypt(string Text, string sKey)
         {
             using (DESCryptoServiceProvider des = new DESCryptoServiceProvider())
             {

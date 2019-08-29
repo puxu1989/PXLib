@@ -23,9 +23,9 @@ namespace PXLib.Helpers
                     DateTime SetupTime = new DateTime();
                     if (!registry.IsRegeditExit("SetupTime"))
                     {
-                        registry.WTRegedit("SetupTime", SecurityHelper.DESEncryptString(DateTime.Now.AddDays(+30).Date.ToString()));
+                        registry.WTRegedit("SetupTime", SecurityHelper.DESEncrypt(DateTime.Now.AddDays(+30).Date.ToString()));
                     }
-                    SetupTime = SecurityHelper.DESEncryptString(registry.GetRegistData("SetupTime").ToString()).ToDate(); ;
+                    SetupTime = SecurityHelper.DESEncrypt(registry.GetRegistData("SetupTime").ToString()).ToDate(); ;
                     if (DateTime.Now > SetupTime)
                     {
                         throw new Exception("您的试用期已过，请购买正版！");
@@ -33,10 +33,10 @@ namespace PXLib.Helpers
                 }
                 else
                 {
-                    string code = SecurityHelper.DESEncryptString(softWareRegCode);
+                    string code = SecurityHelper.DESEncrypt(softWareRegCode);
                     if (!registry.IsRegeditExit("IsAuthorization"))
                     {
-                        registry.WTRegedit("IsAuthorization", SecurityHelper.DESEncryptString("TRUE"));
+                        registry.WTRegedit("IsAuthorization", SecurityHelper.DESEncrypt("TRUE"));
                     }
                     else if (code != SoftRegHelper.machineCode)
                     {
@@ -53,7 +53,7 @@ namespace PXLib.Helpers
         {
             try
             {
-                string s1 = SecurityHelper.DESDecryptString(licenseCode);
+                string s1 = SecurityHelper.DESDecrypt(licenseCode);
                 SecurityHelper se = new SecurityHelper();
                 string s2 = se.Decrypt3DESString(SN, licenseCode.Substring(3, 32));
                 if (s2 != SecurityHelper.MD5String16(SoftRegHelper.machineCode) || s1 != SoftRegHelper.machineCode)
@@ -63,7 +63,7 @@ namespace PXLib.Helpers
                 RegistryHelper registry = new RegistryHelper(CommonHelper.SoftwareName);
                 if (!registry.IsRegeditExit("IsAuthorization"))
                 {
-                    registry.WTRegedit("IsAuthorization", SecurityHelper.DESEncryptString("TRUE"));
+                    registry.WTRegedit("IsAuthorization", SecurityHelper.DESEncrypt("TRUE"));
                 }
 
             }

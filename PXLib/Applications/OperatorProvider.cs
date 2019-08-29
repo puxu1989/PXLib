@@ -43,7 +43,7 @@ namespace PXLib.Application
         {
             try
             {
-                string userDate = SecurityHelper.DESEncryptString(user.ToJson());
+                string userDate = SecurityHelper.DESEncrypt(user.ToJson());
                 if (this.LoginProvider == "Cookie")
                 {
                     WebHelper.WriteCookie(this.LoginUserKey, userDate);
@@ -68,7 +68,7 @@ namespace PXLib.Application
 
                 if (LoginProvider == "Cookie")
                 {
-                    user = SecurityHelper.DESDecryptString(WebHelper.GetCookie(LoginUserKey).ToString()).ToObject<Operator>();
+                    user = SecurityHelper.DESDecrypt(WebHelper.GetCookie(LoginUserKey).ToString()).ToObject<Operator>();
                 }
                 else if (LoginProvider == "AppClient")
                 {
@@ -76,7 +76,7 @@ namespace PXLib.Application
                 }
                 else
                 {
-                    user = SecurityHelper.DESDecryptString(WebHelper.GetSession(LoginUserKey).ToString()).ToObject<Operator>();
+                    user = SecurityHelper.DESDecrypt(WebHelper.GetSession(LoginUserKey).ToString()).ToObject<Operator>();
                 }
                 return user;
             }
@@ -134,11 +134,11 @@ namespace PXLib.Application
             Operator user = new Operator();
             if (LoginProvider == "Cookie")
             {
-                user =SecurityHelper.DESDecryptString(WebHelper.GetCookie(LoginUserKey).ToString()).ToObject<Operator>();
+                user =SecurityHelper.DESDecrypt(WebHelper.GetCookie(LoginUserKey).ToString()).ToObject<Operator>();
             }
             else
             {
-                user = SecurityHelper.DESDecryptString(WebHelper.GetSession(LoginUserKey).ToString()).ToObject<Operator>();
+                user = SecurityHelper.DESDecrypt(WebHelper.GetSession(LoginUserKey).ToString()).ToObject<Operator>();
             }
             object token = CacheFactory.Cache().GetCache<string>(user.UserId);
             if (token == null)
