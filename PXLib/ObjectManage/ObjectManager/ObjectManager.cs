@@ -48,7 +48,7 @@ namespace PXLib.ObjectManage.ObjectManager
             {
                 if (this.readonlyCopy == null)
                 {
-                    this.readonlyCopy = new List<TObject>(this.objectDictionary.Values);
+                    return CollectionHelper.CopyAllToList<TObject>(this.objectDictionary.Values);
                 }
 
                 return this.readonlyCopy;
@@ -160,7 +160,7 @@ namespace PXLib.ObjectManage.ObjectManager
         {
             lock (this.locker)
             {
-                return CollectionHelper.CopyAllToList<TObject>(this.objectDictionary.Values);
+                return objectDictionary.Values.ToList();
             }
         }
 
