@@ -537,26 +537,6 @@ namespace PXLib.Helpers
             return Encoding.Default.GetString(b);
         }
         #endregion
-        #region 性别转换IntToSex
-        public static string IntToSex(int btSex)//byte
-        {
-            string result;
-            switch (btSex)
-            {
-                case 0:
-                    result = "男";
-                    break;
-
-                case 1:
-                    result = "女";
-                    break;
-                default:
-                    result = "未知";
-                    break;
-            }
-            return result;
-        }
-        #endregion
         #region 获取数据的十六进制的文本表示/十六进制的文本转换成二进制
         public static string StringToHexString(string str, Encoding encode)
         {
