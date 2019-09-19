@@ -133,7 +133,7 @@ namespace PXLib.Helpers
         {
             string sRet = "删除成功！";
             FtpWebResponse Respose = null;
-            FtpWebRequest reqFTP = null;
+            FtpWebRequest reqFTP;
             Stream localfile = null;
             Stream stream = null;
             try

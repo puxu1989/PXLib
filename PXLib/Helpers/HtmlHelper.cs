@@ -143,7 +143,7 @@ namespace PXLib.Helpers
         #endregion
         #region 转换HTML为纯文本
 
-        private static string html2TextPattern =
+        private static readonly string html2TextPattern =
                               @"(?<script><script[^>]*?>.*?</script>)|(?<style><style>.*?</style>)|(?<comment><!--.*?-->)" +
                               @"|(?<html><[^>]+>)" + // HTML标记
                               @"|(?<quot>&(quot|#34);)" + // 符号: "

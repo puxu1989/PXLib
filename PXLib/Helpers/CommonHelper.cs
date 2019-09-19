@@ -98,9 +98,11 @@ namespace PXLib.Helpers
         public static int GetRandomSeed()
         {
             byte[] bytes = new byte[4];
-            RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
-            rng.GetBytes(bytes);
-            return BitConverter.ToInt32(bytes, 0);
+            using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
+            {
+                rng.GetBytes(bytes);
+                return BitConverter.ToInt32(bytes, 0);
+            }
         }
         /// <summary>
         /// 根据多少分钟生成期数Id201712040001 默认1分钟一次

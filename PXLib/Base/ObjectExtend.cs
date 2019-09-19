@@ -23,7 +23,7 @@ namespace PXLib
     {
 
         #region 枚举描述/int转枚举扩展
-        private static Dictionary<string, Dictionary<string, string>> enumCache = new Dictionary<string, Dictionary<string, string>>();
+        private static readonly Dictionary<string, Dictionary<string, string>> enumCache = new Dictionary<string, Dictionary<string, string>>();
         //调用此方法 请手动引用命名空间 PXLib 编辑器识别不了 
         /// <summary>
         /// 获取[EnumText("描述名称")]枚举名称 使用了缓存
