@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Web;
 
 namespace PXLib.Helpers
 {
@@ -51,7 +49,7 @@ namespace PXLib.Helpers
             IList list = new List<T>();
             // 获得此模型的类型    
             // Type type = typeof(T);
-            string tempName = "";
+            string tempName;
             foreach (DataRow dr in dt.Rows)
             {
                 //T t = new T();

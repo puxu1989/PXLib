@@ -83,7 +83,7 @@ namespace PXLib.Helpers
             return prefix + code;
         }
         /// <summary>
-        /// 自动生成长编号28位  2017093021001004070217142408
+        /// 自动生成长编号28位  2019093021001004070217142408 模仿微信支付流水号
         /// </summary>
         /// <returns></returns>
         public static string CreateLongNo()
